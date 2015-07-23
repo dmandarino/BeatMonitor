@@ -13,6 +13,15 @@
 		5AE389871B5EC57100210F79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AE389861B5EC57100210F79 /* Images.xcassets */; };
 		5AE3898A1B5EC57100210F79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AE389881B5EC57100210F79 /* LaunchScreen.xib */; };
 		5AE389961B5EC57100210F79 /* BeatMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE389951B5EC57100210F79 /* BeatMonitorTests.swift */; };
+		5F5F57151B601D80009EA42E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5F57131B601D80009EA42E /* Interface.storyboard */; };
+		5F5F57171B601D80009EA42E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F5F57161B601D80009EA42E /* Assets.xcassets */; };
+		5F5F571E1B601D80009EA42E /* BeatMonitor Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5F5F571D1B601D80009EA42E /* BeatMonitor Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5F5F57251B601D80009EA42E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F57241B601D80009EA42E /* InterfaceController.swift */; };
+		5F5F57271B601D80009EA42E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F57261B601D80009EA42E /* ExtensionDelegate.swift */; };
+		5F5F57291B601D80009EA42E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F57281B601D80009EA42E /* NotificationController.swift */; };
+		5F5F572B1B601D80009EA42E /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F572A1B601D80009EA42E /* GlanceController.swift */; };
+		5F5F572D1B601D80009EA42E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F5F572C1B601D80009EA42E /* Assets.xcassets */; };
+		5F5F57311B601D80009EA42E /* BeatMonitor Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5F5F57111B601D80009EA42E /* BeatMonitor Watch.app */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,7 +32,46 @@
 			remoteGlobalIDString = 5AE389791B5EC57100210F79;
 			remoteInfo = BeatMonitor;
 		};
+		5F5F571F1B601D80009EA42E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5AE389721B5EC57100210F79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5F571C1B601D80009EA42E;
+			remoteInfo = "BeatMonitor Watch Extension";
+		};
+		5F5F572F1B601D80009EA42E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5AE389721B5EC57100210F79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5F57101B601D80009EA42E;
+			remoteInfo = "BeatMonitor Watch";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5F5F57351B601D80009EA42E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5F5F571E1B601D80009EA42E /* BeatMonitor Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F5F57391B601D80009EA42E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				5F5F57311B601D80009EA42E /* BeatMonitor Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5AE3897A1B5EC57100210F79 /* BeatMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeatMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +84,18 @@
 		5AE3898F1B5EC57100210F79 /* BeatMonitorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeatMonitorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE389941B5EC57100210F79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AE389951B5EC57100210F79 /* BeatMonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatMonitorTests.swift; sourceTree = "<group>"; };
+		5F5F57111B601D80009EA42E /* BeatMonitor Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BeatMonitor Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F5F57141B601D80009EA42E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		5F5F57161B601D80009EA42E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5F5F57181B601D80009EA42E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F5F571D1B601D80009EA42E /* BeatMonitor Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BeatMonitor Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F5F57231B601D80009EA42E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		5F5F57241B601D80009EA42E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		5F5F57261B601D80009EA42E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		5F5F57281B601D80009EA42E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		5F5F572A1B601D80009EA42E /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		5F5F572C1B601D80009EA42E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5F5F572E1B601D80009EA42E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +113,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5F5F571A1B601D80009EA42E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,6 +128,8 @@
 			children = (
 				5AE3897C1B5EC57100210F79 /* BeatMonitor */,
 				5AE389921B5EC57100210F79 /* BeatMonitorTests */,
+				5F5F57121B601D80009EA42E /* BeatMonitor Watch */,
+				5F5F57211B601D80009EA42E /* BeatMonitor Watch Extension */,
 				5AE3897B1B5EC57100210F79 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +139,8 @@
 			children = (
 				5AE3897A1B5EC57100210F79 /* BeatMonitor.app */,
 				5AE3898F1B5EC57100210F79 /* BeatMonitorTests.xctest */,
+				5F5F57111B601D80009EA42E /* BeatMonitor Watch.app */,
+				5F5F571D1B601D80009EA42E /* BeatMonitor Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +223,38 @@
 			name = routing;
 			sourceTree = "<group>";
 		};
+		5F5F57121B601D80009EA42E /* BeatMonitor Watch */ = {
+			isa = PBXGroup;
+			children = (
+				5F5F57131B601D80009EA42E /* Interface.storyboard */,
+				5F5F57161B601D80009EA42E /* Assets.xcassets */,
+				5F5F57181B601D80009EA42E /* Info.plist */,
+			);
+			path = "BeatMonitor Watch";
+			sourceTree = "<group>";
+		};
+		5F5F57211B601D80009EA42E /* BeatMonitor Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5F5F57241B601D80009EA42E /* InterfaceController.swift */,
+				5F5F57261B601D80009EA42E /* ExtensionDelegate.swift */,
+				5F5F57281B601D80009EA42E /* NotificationController.swift */,
+				5F5F572A1B601D80009EA42E /* GlanceController.swift */,
+				5F5F572C1B601D80009EA42E /* Assets.xcassets */,
+				5F5F572E1B601D80009EA42E /* Info.plist */,
+				5F5F57221B601D80009EA42E /* Supporting Files */,
+			);
+			path = "BeatMonitor Watch Extension";
+			sourceTree = "<group>";
+		};
+		5F5F57221B601D80009EA42E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5F5F57231B601D80009EA42E /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,10 +265,12 @@
 				5AE389761B5EC57100210F79 /* Sources */,
 				5AE389771B5EC57100210F79 /* Frameworks */,
 				5AE389781B5EC57100210F79 /* Resources */,
+				5F5F57391B601D80009EA42E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5F5F57301B601D80009EA42E /* PBXTargetDependency */,
 			);
 			name = BeatMonitor;
 			productName = BeatMonitor;
@@ -190,21 +295,64 @@
 			productReference = 5AE3898F1B5EC57100210F79 /* BeatMonitorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5F5F57101B601D80009EA42E /* BeatMonitor Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F5F57361B601D80009EA42E /* Build configuration list for PBXNativeTarget "BeatMonitor Watch" */;
+			buildPhases = (
+				5F5F570F1B601D80009EA42E /* Resources */,
+				5F5F57351B601D80009EA42E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F5F57201B601D80009EA42E /* PBXTargetDependency */,
+			);
+			name = "BeatMonitor Watch";
+			productName = "BeatMonitor Watch";
+			productReference = 5F5F57111B601D80009EA42E /* BeatMonitor Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		5F5F571C1B601D80009EA42E /* BeatMonitor Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F5F57321B601D80009EA42E /* Build configuration list for PBXNativeTarget "BeatMonitor Watch Extension" */;
+			buildPhases = (
+				5F5F57191B601D80009EA42E /* Sources */,
+				5F5F571A1B601D80009EA42E /* Frameworks */,
+				5F5F571B1B601D80009EA42E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BeatMonitor Watch Extension";
+			productName = "BeatMonitor Watch Extension";
+			productReference = 5F5F571D1B601D80009EA42E /* BeatMonitor Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		5AE389721B5EC57100210F79 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Douglas Mandarino";
 				TargetAttributes = {
 					5AE389791B5EC57100210F79 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = H8UTHN35FS;
 					};
 					5AE3898E1B5EC57100210F79 = {
 						CreatedOnToolsVersion = 6.4;
 						TestTargetID = 5AE389791B5EC57100210F79;
+					};
+					5F5F57101B601D80009EA42E = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = H8UTHN35FS;
+					};
+					5F5F571C1B601D80009EA42E = {
+						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
@@ -223,6 +371,8 @@
 			targets = (
 				5AE389791B5EC57100210F79 /* BeatMonitor */,
 				5AE3898E1B5EC57100210F79 /* BeatMonitorTests */,
+				5F5F57101B601D80009EA42E /* BeatMonitor Watch */,
+				5F5F571C1B601D80009EA42E /* BeatMonitor Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -242,6 +392,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F5F570F1B601D80009EA42E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F5F57171B601D80009EA42E /* Assets.xcassets in Resources */,
+				5F5F57151B601D80009EA42E /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F5F571B1B601D80009EA42E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F5F572D1B601D80009EA42E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +432,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5F5F57191B601D80009EA42E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F5F57291B601D80009EA42E /* NotificationController.swift in Sources */,
+				5F5F57271B601D80009EA42E /* ExtensionDelegate.swift in Sources */,
+				5F5F57251B601D80009EA42E /* InterfaceController.swift in Sources */,
+				5F5F572B1B601D80009EA42E /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -272,6 +450,16 @@
 			isa = PBXTargetDependency;
 			target = 5AE389791B5EC57100210F79 /* BeatMonitor */;
 			targetProxy = 5AE389901B5EC57100210F79 /* PBXContainerItemProxy */;
+		};
+		5F5F57201B601D80009EA42E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5F571C1B601D80009EA42E /* BeatMonitor Watch Extension */;
+			targetProxy = 5F5F571F1B601D80009EA42E /* PBXContainerItemProxy */;
+		};
+		5F5F57301B601D80009EA42E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5F57101B601D80009EA42E /* BeatMonitor Watch */;
+			targetProxy = 5F5F572F1B601D80009EA42E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -290,6 +478,14 @@
 				5AE389891B5EC57100210F79 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		5F5F57131B601D80009EA42E /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F5F57141B601D80009EA42E /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -316,6 +512,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -331,7 +528,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -369,7 +566,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -380,9 +577,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BeatMonitor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "bdjv.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -390,9 +591,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BeatMonitor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "bdjv.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -410,6 +615,7 @@
 				);
 				INFOPLIST_FILE = BeatMonitorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "bdjv.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeatMonitor.app/BeatMonitor";
 			};
@@ -425,8 +631,79 @@
 				);
 				INFOPLIST_FILE = BeatMonitorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "bdjv.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeatMonitor.app/BeatMonitor";
+			};
+			name = Release;
+		};
+		5F5F57331B601D80009EA42E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "BeatMonitor Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = bdjv.BeatMonitor.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		5F5F57341B601D80009EA42E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "BeatMonitor Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = bdjv.BeatMonitor.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		5F5F57371B601D80009EA42E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = BeatMonitor_Watch_Extension;
+				INFOPLIST_FILE = "BeatMonitor Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = bdjv.BeatMonitor.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		5F5F57381B601D80009EA42E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = BeatMonitor_Watch_Extension;
+				INFOPLIST_FILE = "BeatMonitor Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = bdjv.BeatMonitor.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -449,12 +726,30 @@
 				5AE3899B1B5EC57100210F79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5AE3899C1B5EC57100210F79 /* Build configuration list for PBXNativeTarget "BeatMonitorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5AE3899D1B5EC57100210F79 /* Debug */,
 				5AE3899E1B5EC57100210F79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F5F57321B601D80009EA42E /* Build configuration list for PBXNativeTarget "BeatMonitor Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F5F57331B601D80009EA42E /* Debug */,
+				5F5F57341B601D80009EA42E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5F5F57361B601D80009EA42E /* Build configuration list for PBXNativeTarget "BeatMonitor Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F5F57371B601D80009EA42E /* Debug */,
+				5F5F57381B601D80009EA42E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
