@@ -22,6 +22,9 @@
 		5F5F572B1B601D80009EA42E /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F572A1B601D80009EA42E /* GlanceController.swift */; };
 		5F5F572D1B601D80009EA42E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F5F572C1B601D80009EA42E /* Assets.xcassets */; };
 		5F5F57311B601D80009EA42E /* BeatMonitor Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5F5F57111B601D80009EA42E /* BeatMonitor Watch.app */; };
+		5FC186421B613718008EEA68 /* Rectangle 413 Copy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1863F1B613718008EEA68 /* Rectangle 413 Copy@2x.png */; };
+		5FC186431B613718008EEA68 /* Rectangle 413 Copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC186401B613718008EEA68 /* Rectangle 413 Copy.png */; };
+		5FC186441B613718008EEA68 /* Rectangle 413 Copy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC186411B613718008EEA68 /* Rectangle 413 Copy@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,9 @@
 		5F5F572A1B601D80009EA42E /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		5F5F572C1B601D80009EA42E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F5F572E1B601D80009EA42E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FC1863F1B613718008EEA68 /* Rectangle 413 Copy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle 413 Copy@2x.png"; sourceTree = "<group>"; };
+		5FC186401B613718008EEA68 /* Rectangle 413 Copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle 413 Copy.png"; sourceTree = "<group>"; };
+		5FC186411B613718008EEA68 /* Rectangle 413 Copy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle 413 Copy@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,9 @@
 		5AE389711B5EC57100210F79 = {
 			isa = PBXGroup;
 			children = (
+				5FC1863F1B613718008EEA68 /* Rectangle 413 Copy@2x.png */,
+				5FC186401B613718008EEA68 /* Rectangle 413 Copy.png */,
+				5FC186411B613718008EEA68 /* Rectangle 413 Copy@3x.png */,
 				5AE3897C1B5EC57100210F79 /* BeatMonitor */,
 				5AE389921B5EC57100210F79 /* BeatMonitorTests */,
 				5F5F57121B601D80009EA42E /* BeatMonitor Watch */,
@@ -384,7 +393,10 @@
 			files = (
 				5AE389851B5EC57100210F79 /* Main.storyboard in Resources */,
 				5AE3898A1B5EC57100210F79 /* LaunchScreen.xib in Resources */,
+				5FC186421B613718008EEA68 /* Rectangle 413 Copy@2x.png in Resources */,
+				5FC186431B613718008EEA68 /* Rectangle 413 Copy.png in Resources */,
 				5AE389871B5EC57100210F79 /* Images.xcassets in Resources */,
+				5FC186441B613718008EEA68 /* Rectangle 413 Copy@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +756,7 @@
 				5F5F57341B601D80009EA42E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5F5F57361B601D80009EA42E /* Build configuration list for PBXNativeTarget "BeatMonitor Watch" */ = {
 			isa = XCConfigurationList;
@@ -752,6 +765,7 @@
 				5F5F57381B601D80009EA42E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
