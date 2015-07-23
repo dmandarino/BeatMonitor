@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8121.17" systemVersion="15A204h" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8066.14"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller spacing="0.0" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="BeatMonitor_Watch" customModuleProvider="target">
+                    <items>
+                        <group width="1" height="0.5" alignment="left" spacing="0.0" id="XpJ-AO-MOC">
+                            <items>
+                                <imageView width="48" height="48" alignment="left" verticalAlignment="center" image="beat" id="pOE-mO-2wj"/>
+                                <imageView width="88" height="2" alignment="left" verticalAlignment="center" image="Rectangle 413 Copy@3x.png" id="FW4-0a-vYX"/>
+                            </items>
+                        </group>
+                        <group width="1" height="0.40000000000000002" alignment="left" verticalAlignment="bottom" spacing="0.0" id="g8e-Bc-RKb">
+                            <items>
+                                <group width="0.45000000000000001" alignment="left" layout="vertical" spacing="0.0" id="hTh-rp-Wbd">
+                                    <items>
+                                        <label alignment="left" verticalAlignment="center" text="bpm" textAlignment="center" id="78G-3K-x6S">
+                                            <fontDescription key="font" type="system" weight="medium" pointSize="16"/>
+                                        </label>
+                                        <label alignment="left" text="157" textAlignment="center" id="wjx-6q-eLI">
+                                            <fontDescription key="font" type="system" weight="medium" pointSize="33"/>
+                                        </label>
+                                    </items>
+                                </group>
+                                <group width="0.55000000000000004" height="1" alignment="center" layout="vertical" spacing="0.0" id="KhX-Nj-wbC">
+                                    <items>
+                                        <group width="1" height="6" alignment="left" id="ShN-NG-61x"/>
+                                        <label alignment="left" text="Scanning..." textAlignment="center" id="mbp-dj-Mph">
+                                            <fontDescription key="font" type="system" pointSize="14"/>
+                                        </label>
+                                        <button width="1" height="30" alignment="left" verticalAlignment="bottom" title="Stop" id="SA8-c8-ah7">
+                                            <connections>
+                                                <action selector="scan" destination="AgC-eL-Hgc" id="N8J-nS-SG6"/>
+                                            </connections>
+                                        </button>
+                                        <group width="1" height="2" alignment="left" verticalAlignment="bottom" id="oAN-x7-W4I">
+                                            <variation key="device=watch42mm" height="12"/>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="label" destination="wjx-6q-eLI" id="Fpo-TT-l5M"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="235" y="347"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="XkS-y5-khE"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="XkS-y5-khE" id="49B-RR-99y"/>
+                        <segue destination="gdX-wl-uQE" kind="relationship" relationship="dynamicNotificationInterface" id="fKh-qV-3T2"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="235" y="659"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="KIl-fV-djm">
+            <objects>
+                <controller id="gdX-wl-uQE" customClass="NotificationController" customModule="BeatMonitor_Watch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="535" y="659"/>
+        </scene>
+    </scenes>
+</document>
