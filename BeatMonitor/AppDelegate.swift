@@ -12,10 +12,30 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    var navigationController:UINavigationController!
+    
+    var mainViewController =  ViewController()
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        self.navigationController = UINavigationController(rootViewController: self.mainViewController)
+        
+        //        navigationController!.navigationBar.barTintColor = UIColor(red: 1.0000, green: 0.8824, blue: 0.7843, alpha: 1.0)
+        //        navigationController!.navigationBar.alpha = 1.0
+        //        navigationController!.navigationBar.tintColor = UIColor.blackColor()
+        //        navigationController!.navigationBar.layer.borderWidth = 0
+        //        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 22)! , NSForegroundColorAttributeName: UIColor.blackColor()]
+        
+        self.window?.rootViewController = self.navigationController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
