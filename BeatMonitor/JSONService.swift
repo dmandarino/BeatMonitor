@@ -41,6 +41,26 @@ class JSONService {
         return User(age: 0, weight: 0, height: 0, practiseExercise: false, intensity: Exercise.Never)
     }
     
+    func stringfyResults(results:[Int]) -> String {
+        
+        let resultArray:AnyObject = [ "results" : results ]
+        
+        let jsonString = JSONStringify(resultArray)
+        return jsonString
+    }
+    
+    func convertStringToResults(jsonString:String) -> [Int]{
+        
+        let array = JSONParseArray(jsonString)
+        for dict:AnyObject in array {
+            
+            let results = dict["results"] as! [Int]
+            
+            return results
+        }
+        
+        return []
+    }
     
     private func JSONStringify(value: AnyObject, prettyPrinted: Bool = false) -> String {
         let options:NSJSONWritingOptions! = prettyPrinted ? NSJSONWritingOptions.PrettyPrinted : nil

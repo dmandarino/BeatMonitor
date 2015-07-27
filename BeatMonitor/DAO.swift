@@ -20,7 +20,7 @@ class DAO {
         dict.writeToFile(path, atomically: true)
     }
     
-    class func saveResultsData(results:[Int]) {
+    class func saveResultsData(results:String) {
         
         let path = getPath("Results")
         let dict: NSMutableDictionary = ["Results": results]
@@ -62,24 +62,23 @@ class DAO {
         return ""
     }
     
-    
-//    class func loadUserData() -> [Int]{
-//        
-//        let path = getPath("Results")
-//        _ = NSFileManager.defaultManager()
-//        
-//        _ = NSMutableDictionary(contentsOfFile: path)
-//        let myDict = NSDictionary(contentsOfFile: path)
-//        if let dict = myDict {
-//            let results: AnyObject? = dict["Results"]
-//            if results?.description != nil {
-//                return results!.description
-//            }
-//        } else {
-//            print("WARNING: Couldn't create dictionary from plist! Default values will be used!")
-//        }
-//        return [0,0,0,0,0,0,0,0,0,0]
-//    }
+    class func loadResultsData() -> String {
+        
+        let path = getPath("Results")
+        _ = NSFileManager.defaultManager()
+        
+        _ = NSMutableDictionary(contentsOfFile: path)
+        let myDict = NSDictionary(contentsOfFile: path)
+        if let dict = myDict {
+            let results: AnyObject? = dict["Results"]
+            if results?.description != nil {
+                return results!.description
+            }
+        } else {
+            print("WARNING: Couldn't create dictionary from plist! Default values will be used!")
+        }
+        return ""
+    }
     
     private class func getPath(key:String) -> String{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
