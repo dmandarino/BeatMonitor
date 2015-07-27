@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5149FE921B66B7010050510E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5149FE911B66B7010050510E /* AppView.swift */; };
+		5149FE941B66B71E0050510E /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5149FE931B66B71E0050510E /* GraphView.swift */; };
+		5149FE971B66B7760050510E /* Circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5149FE951B66B7760050510E /* Circle.png */; };
+		5149FE981B66B7760050510E /* Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 5149FE961B66B7760050510E /* Heart.png */; };
 		5A80D4D21B6588640025B229 /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D4D11B6588640025B229 /* DAO.swift */; };
 		5A80D4D41B658B2C0025B229 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D4D31B658B2C0025B229 /* User.swift */; };
 		5A80D4D61B6597D70025B229 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D4D51B6597D70025B229 /* Exercise.swift */; };
@@ -84,6 +88,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5149FE911B66B7010050510E /* AppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		5149FE931B66B71E0050510E /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		5149FE951B66B7760050510E /* Circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circle.png; sourceTree = "<group>"; };
+		5149FE961B66B7760050510E /* Heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heart.png; sourceTree = "<group>"; };
 		5A80D4D11B6588640025B229 /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 		5A80D4D31B658B2C0025B229 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5A80D4D51B6597D70025B229 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
@@ -146,6 +154,8 @@
 		5AE389711B5EC57100210F79 = {
 			isa = PBXGroup;
 			children = (
+				5149FE951B66B7760050510E /* Circle.png */,
+				5149FE961B66B7760050510E /* Heart.png */,
 				5FC1863F1B613718008EEA68 /* Rectangle 413 Copy@2x.png */,
 				5FC186401B613718008EEA68 /* Rectangle 413 Copy.png */,
 				5FC186411B613718008EEA68 /* Rectangle 413 Copy@3x.png */,
@@ -232,6 +242,8 @@
 			children = (
 				5AE389831B5EC57100210F79 /* Main.storyboard */,
 				5AE389881B5EC57100210F79 /* LaunchScreen.xib */,
+				5149FE911B66B7010050510E /* AppView.swift */,
+				5149FE931B66B71E0050510E /* GraphView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -419,7 +431,9 @@
 				5FC186431B613718008EEA68 /* Rectangle 413 Copy.png in Resources */,
 				5AE389871B5EC57100210F79 /* Images.xcassets in Resources */,
 				5FC186441B613718008EEA68 /* Rectangle 413 Copy@3x.png in Resources */,
+				5149FE981B66B7760050510E /* Heart.png in Resources */,
 				5A80D4D81B659C2C0025B229 /* User.plist in Resources */,
+				5149FE971B66B7760050510E /* Circle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,8 +470,10 @@
 			files = (
 				5A80D4D61B6597D70025B229 /* Exercise.swift in Sources */,
 				5A80D4D41B658B2C0025B229 /* User.swift in Sources */,
+				5149FE941B66B71E0050510E /* GraphView.swift in Sources */,
 				5A80D4D21B6588640025B229 /* DAO.swift in Sources */,
 				5ACCED181B66A89000C42674 /* Results.swift in Sources */,
+				5149FE921B66B7010050510E /* AppView.swift in Sources */,
 				5A80D4DA1B65B6A70025B229 /* JSONService.swift in Sources */,
 				5AE389821B5EC57100210F79 /* ViewController.swift in Sources */,
 				5AE389801B5EC57100210F79 /* AppDelegate.swift in Sources */,
