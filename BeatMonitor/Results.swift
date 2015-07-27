@@ -10,7 +10,7 @@ import Foundation
 
 class Results {
     
-    var results:[Int]
+    var results:[Int] 
     
     init(){
         results = [0,0,0,0,0,0,0,0,0,0]

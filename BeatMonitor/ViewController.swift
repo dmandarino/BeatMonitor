@@ -7,17 +7,89 @@
 //
 
 import UIKit
+import WatchConnectivity
 
-class ViewController: UIViewController, BeatMonitorScreenProtocol {
+class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDelegate {
     
     var minutes = 0
     var seconds = 0
     var timer = NSTimer()
     
+    var session: WCSession!
+    
+    var intervalo: Double = 0
+    
+    var counterData = String()
+    
+    var lastReceived = NSDate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        NSTimer.scheduledTimerWithTimeInterval(1200, target: self, selector: "timerDidFire:", userInfo:nil, repeats: true)
+        
+        
+        beginSession()
+        
+    }
+    
+    func beginSession() {
+        
+        if (WCSession.isSupported()) {
+            session = WCSession.defaultSession()
+            session.delegate = self;
+            session.activateSession()
+        }
+        
+    }
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        let counterValue = message["counterValue"] as? String
+        
+        //Use this to update the UI instantaneously (otherwise, takes a little while)
+        dispatch_async(dispatch_get_main_queue()) {
+            
+//            self.counterData = counterValue!
+            
+            print(counterValue)
+            
+            let s = counterValue
+            let m = s?.stringByReplacingOccurrencesOfString(" count/min", withString: "")
+            
+            self.myView.myBeat = Int(m!)!
+            
+            let result = Results()
+            var array = result.results
+            
+            var string: String = DAO.loadResultsData() as String
+            if string != "" {
+               array = JSONService.convertStringToResults(string)
+            }
+            array.append(Int(m!)!)
+            print(array)
+            result.reorganizeResults(array)
+        
+            
+//            string = JSONService.stringfyResults([0,0,0,0,0,0,0,0,Int(m!)!])
+//            print(string)
+//            DAO.saveResultsData(string)
+            
+            self.lastReceived = NSDate()
+            
+        }
+    }
+    
+    func timerDidFire(timer:NSTimer!) {
+        
+        let difference = NSDate().timeIntervalSinceDate(lastReceived)
+        
+        print(difference)
+        
+        if difference > 20 {
+            
+//                notificacao app fechou
+        }
     }
     
     var myView:AppView {
