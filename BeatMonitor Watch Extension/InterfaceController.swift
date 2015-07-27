@@ -54,9 +54,17 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         
         workoutSession!.delegate = self
         
-        healthStore.startWorkoutSession(workoutSession!) { (update, error) -> Void in
-            
-        }
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //Trecho abaixo comentado por erro na build!
+        
+//        healthStore.startWorkoutSession(workoutSession!) { (update, error) -> Void in
+//            
+//        }
         
         let typesToShare = Set([HKObjectType.workoutType()])
         let typesToRead = Set([
@@ -113,9 +121,17 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         
         healthStore.executeQuery(heartRateQuery)
         
-        let sampleHandler = { (samples: [HKQuantitySample]) -> Void in
-            
-        }
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!
+        //Trecho abaixo comentado por warning na build!
+        
+//        let sampleHandler = { (samples: [HKQuantitySample]) -> Void in
+//            
+//        }
         
         
         return heartRateQuery
