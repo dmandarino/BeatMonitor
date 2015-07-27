@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A80D4D21B6588640025B229 /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D4D11B6588640025B229 /* DAO.swift */; };
+		5A80D4D41B658B2C0025B229 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D4D31B658B2C0025B229 /* User.swift */; };
+		5A80D4D61B6597D70025B229 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D4D51B6597D70025B229 /* Exercise.swift */; };
+		5A80D4D81B659C2C0025B229 /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A80D4D71B659C2C0025B229 /* User.plist */; };
+		5A80D4DA1B65B6A70025B229 /* JSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D4D91B65B6A70025B229 /* JSONService.swift */; };
 		5AE389801B5EC57100210F79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE3897F1B5EC57100210F79 /* AppDelegate.swift */; };
 		5AE389821B5EC57100210F79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE389811B5EC57100210F79 /* ViewController.swift */; };
 		5AE389851B5EC57100210F79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AE389831B5EC57100210F79 /* Main.storyboard */; };
@@ -77,6 +82,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5A80D4D11B6588640025B229 /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
+		5A80D4D31B658B2C0025B229 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5A80D4D51B6597D70025B229 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		5A80D4D71B659C2C0025B229 /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
+		5A80D4D91B65B6A70025B229 /* JSONService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONService.swift; sourceTree = "<group>"; };
 		5AE3897A1B5EC57100210F79 /* BeatMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeatMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE3897E1B5EC57100210F79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AE3897F1B5EC57100210F79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +183,7 @@
 				5AE3897F1B5EC57100210F79 /* AppDelegate.swift */,
 				5AE389861B5EC57100210F79 /* Images.xcassets */,
 				5AE3897E1B5EC57100210F79 /* Info.plist */,
+				5A80D4D71B659C2C0025B229 /* User.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -205,6 +216,8 @@
 		5AE389A01B5EC58C00210F79 /* interactor */ = {
 			isa = PBXGroup;
 			children = (
+				5A80D4D11B6588640025B229 /* DAO.swift */,
+				5A80D4D91B65B6A70025B229 /* JSONService.swift */,
 			);
 			name = interactor;
 			sourceTree = "<group>";
@@ -221,6 +234,8 @@
 		5AE389A21B5EC5E200210F79 /* entity */ = {
 			isa = PBXGroup;
 			children = (
+				5A80D4D31B658B2C0025B229 /* User.swift */,
+				5A80D4D51B6597D70025B229 /* Exercise.swift */,
 			);
 			name = entity;
 			sourceTree = "<group>";
@@ -397,6 +412,7 @@
 				5FC186431B613718008EEA68 /* Rectangle 413 Copy.png in Resources */,
 				5AE389871B5EC57100210F79 /* Images.xcassets in Resources */,
 				5FC186441B613718008EEA68 /* Rectangle 413 Copy@3x.png in Resources */,
+				5A80D4D81B659C2C0025B229 /* User.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +447,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A80D4D61B6597D70025B229 /* Exercise.swift in Sources */,
+				5A80D4D41B658B2C0025B229 /* User.swift in Sources */,
+				5A80D4D21B6588640025B229 /* DAO.swift in Sources */,
+				5A80D4DA1B65B6A70025B229 /* JSONService.swift in Sources */,
 				5AE389821B5EC57100210F79 /* ViewController.swift in Sources */,
 				5AE389801B5EC57100210F79 /* AppDelegate.swift in Sources */,
 			);
