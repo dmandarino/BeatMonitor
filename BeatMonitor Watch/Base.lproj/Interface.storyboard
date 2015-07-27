@@ -20,10 +20,10 @@
                             <items>
                                 <group width="0.45000000000000001" alignment="left" layout="vertical" spacing="0.0" id="hTh-rp-Wbd">
                                     <items>
-                                        <label alignment="left" verticalAlignment="center" text="bpm" textAlignment="center" id="78G-3K-x6S">
+                                        <label alignment="center" verticalAlignment="center" text="bpm" textAlignment="center" id="78G-3K-x6S">
                                             <fontDescription key="font" type="system" weight="medium" pointSize="16"/>
                                         </label>
-                                        <label alignment="left" text="157" textAlignment="center" id="wjx-6q-eLI">
+                                        <label alignment="center" text="157" textAlignment="center" id="wjx-6q-eLI">
                                             <fontDescription key="font" type="system" weight="medium" pointSize="31"/>
                                         </label>
                                     </items>
@@ -31,15 +31,15 @@
                                 <group width="0.55000000000000004" height="1" alignment="center" layout="vertical" spacing="0.0" id="KhX-Nj-wbC">
                                     <items>
                                         <group width="1" height="6" alignment="left" id="ShN-NG-61x"/>
-                                        <label alignment="left" text="Scanning..." textAlignment="center" id="mbp-dj-Mph">
-                                            <fontDescription key="font" type="system" pointSize="14"/>
+                                        <label alignment="left" text="Connecting..." textAlignment="left" id="mbp-dj-Mph">
+                                            <fontDescription key="font" type="system" pointSize="11"/>
                                         </label>
                                         <button width="1" height="30" alignment="left" verticalAlignment="bottom" title="Stop" id="SA8-c8-ah7">
                                             <connections>
                                                 <action selector="scan" destination="AgC-eL-Hgc" id="N8J-nS-SG6"/>
                                             </connections>
                                         </button>
-                                        <group width="1" height="2" alignment="left" verticalAlignment="bottom" id="oAN-x7-W4I">
+                                        <group width="1" height="5" alignment="left" verticalAlignment="bottom" id="oAN-x7-W4I">
                                             <variation key="device=watch42mm" height="12"/>
                                         </group>
                                     </items>
@@ -49,6 +49,7 @@
                     </items>
                     <connections>
                         <outlet property="label" destination="wjx-6q-eLI" id="Fpo-TT-l5M"/>
+                        <outlet property="scan" destination="mbp-dj-Mph" id="JvN-ck-1C2"/>
                     </connections>
                 </controller>
             </objects>

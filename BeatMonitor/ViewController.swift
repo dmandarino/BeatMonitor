@@ -126,6 +126,16 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
     
     func didChangeIntervalValue(value: Int) {
         
+        intervalo = Double(value)
+        
+        let applicationData = ["intervalo":intervalo]
+        
+        session.sendMessage(applicationData, replyHandler: {(_: [String : AnyObject]) -> Void in
+            // handle reply from iPhone app here
+            }, errorHandler: {(error ) -> Void in
+                // catch any errors here
+        })
+        
     }
     
     func didPressStartButton(state: Bool) {

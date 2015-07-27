@@ -18,6 +18,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
     
     @IBOutlet var label: WKInterfaceLabel!
     
+    @IBOutlet var scan: WKInterfaceLabel!
+    
     var session : WCSession!
     
     var workoutStartDate: NSDate?
@@ -47,6 +49,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
     override func willActivate() {
         super.willActivate()
         
+        scan.setText("Connecting...")
+        
         beginSession()
     }
     
@@ -74,7 +78,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
             
             if error == nil {
                 
-                self.label.setText("Connecting...")
+                self.label.setText("----")
                 
             }
             
@@ -85,9 +89,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
     
     func setupWorkout() {
         
-        let variation = NSDate().timeIntervalSinceDate(beginDate)
-        
-        print(variation)
+//        let variation = NSDate().timeIntervalSinceDate(beginDate)
         
         workoutSession = HKWorkoutSession(activityType: activityType!, locationType: locationType!)
         
@@ -121,23 +123,22 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
             
             let string = String(sample.quantity)
             
-            
-            
-            
-            
-            let heartRate = sample.quantity
+//            let heartRate = sample.quantity
 //            let heartRateDouble = heartRate.doubleValueForUnit(countPerMinuteUnit)
+            
+            let counter = string.stringByReplacingOccurrencesOfString(" count/min", withString: "")
             
             sendToPhone(string)
             
-            self.label.setText("\(heartRate)")
+            self.label.setText("\(counter)")
+            
+            self.scan.setText("Scanning...")
             
         }
         
         healthStore.endWorkoutSession(workoutSession!)
+        
         delay(intervalo) {
-            
-            //            self.setupWorkout()
             
             self.workoutSession = HKWorkoutSession(activityType: self.activityType!, locationType: self.locationType!)
             
@@ -201,6 +202,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         
         intervalo = (message["intervalo"] as? Double)!
+        print(intervalo)
         
     }
     
