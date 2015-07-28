@@ -107,7 +107,7 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         
         self.title = "Beat Monitor"
         
-        //self.myView.beginViewFirstTime()
+        //self.myView.openTutorial()
         //self.myView.openTimeIntervalMenu()
     }
     

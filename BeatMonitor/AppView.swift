@@ -525,7 +525,7 @@ class AppView: UIView {
         
     }
     
-    func beginViewFirstTime() {
+    func openTutorial() {
         
         inTutorial = true
         
@@ -677,7 +677,7 @@ class AppView: UIView {
     
     func pressHelp() {
         
-        beginViewFirstTime()
+        openTutorial()
         
     }
     
@@ -756,6 +756,36 @@ class AppView: UIView {
             button.setTitle("Start", forState: .Normal)
             delegate?.didPressStartButton(false)
         }
+        
+    }
+    
+    func refreshGraphData(data: Array<Int>) {
+        
+        graphView.heartBeatValues = data
+        
+        graphView.removeFromSuperview()
+        
+        self.addSubview(graphView)
+        
+    }
+    
+    func resetVisualData() {
+        
+        button1.setTitle("Tap to set", forState: .Normal)
+        button2.setTitle("Tap to set", forState: .Normal)
+        button3.setTitle("Tap to set", forState: .Normal)
+        button4.setTitle("Tap to set", forState: .Normal)
+        
+        buttonA.backgroundColor = redDarkColor
+        buttonA.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        buttonB.backgroundColor = redDarkColor
+        buttonB.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        buttonC.backgroundColor = redDarkColor
+        buttonC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
+        graphView.removeFromSuperview()
+        
+        self.addSubview(graphView)
         
     }
     
