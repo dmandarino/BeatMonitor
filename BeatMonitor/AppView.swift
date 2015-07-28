@@ -100,6 +100,7 @@ class AppView: UIView {
         }
     }
     
+    var inTutorial = false
     var currentInterval = 0
     var intervalButtons: Array<UIButton> = []
     
@@ -489,11 +490,44 @@ class AppView: UIView {
     
     func pressHeart() {
         
-        print("Coracao")
+        if(inTutorial == true) {
+            closeTutorial()
+        }
+    }
+    
+    func closeTutorial() {
+        
+        inTutorial = false
+        
+        resultLabel.text = "Results"
+        
+        graphView.hidden = false
+        descriptionContainer.hidden = true
+        
+        nextScanLabel.hidden = true
+        scanEveryLabel.hidden = true
+        startButton.hidden = true
+        
+        for i in intervalButtons {
+            
+            i.hidden = true
+            
+        }
+        
+        let f = heartLabel.frame
+        
+        heartLabel.frame = CGRectMake(f.origin.x, f.origin.y, self.frame.width, f.height)
+        heartLabel.text = "Awating for watch"
+        
+        let f2 = heartView.frame
+        
+        heartView.frame = CGRectMake(heartMidX, f2.origin.y, f2.width, f2.height)
         
     }
     
     func beginViewFirstTime() {
+        
+        inTutorial = true
         
         resultLabel.text = "Welcome to Beat Monitor"
         
@@ -522,6 +556,10 @@ class AppView: UIView {
     }
     
     func openTimeIntervalMenu() {
+        
+        if(inTutorial == true) {
+            return //Only open menu if not in tutorial
+        }
         
         let f = heartLabel.frame
         let f2 = heartView.frame
@@ -639,7 +677,7 @@ class AppView: UIView {
     
     func pressHelp() {
         
-        print("Help")
+        beginViewFirstTime()
         
     }
     
