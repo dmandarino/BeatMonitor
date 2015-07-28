@@ -91,6 +91,16 @@ class AppView: UIView {
         }
     }
     
+    var myInterval:Int {
+        get {
+            return currentInterval * 60
+        }
+        set {
+            currentInterval = newValue
+        }
+    }
+    
+    var currentInterval = 0
     var intervalButtons: Array<UIButton> = []
     
     var resultLabel = UILabel()
