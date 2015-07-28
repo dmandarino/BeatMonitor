@@ -39,7 +39,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = self.navigationController
         self.window?.makeKeyAndVisible()
         
+        
+        // Override point for customization after application launch.
+        
+        if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:"))) {
+
+            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        }
+        
         return true
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationWillResignActive(application: UIApplication) {
