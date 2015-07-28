@@ -128,18 +128,32 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
             
             let string = String(sample.quantity)
             
+            print(string)
+            
 //            let heartRate = sample.quantity
 //            let heartRateDouble = heartRate.doubleValueForUnit(countPerMinuteUnit)
             
-            let counter = string.stringByReplacingOccurrencesOfString(" count/min", withString: "")
+            var m = ""
             
-            if status == true {
-            
-                sendToPhone(string)
+            if string.rangeOfString(" count/min") != nil {
                 
-                self.label.setText("\(counter)")
+                m = (string.stringByReplacingOccurrencesOfString(" count/min", withString: ""))
                 
-                self.scan.setText("Scanning...")
+                if status == true {
+                    
+                    sendToPhone(m)
+                    
+                    self.label.setText("\(m)")
+                    
+                    self.scan.setText("Scanning...")
+                }
+                
+            }
+                
+            else {
+                
+                m = (string.stringByReplacingOccurrencesOfString(" count/s", withString: ""))
+                
             }
             
         }

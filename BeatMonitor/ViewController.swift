@@ -21,6 +21,8 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
     
     var counterData = String()
     
+    var opened = true
+    
     var lastReceived = NSDate()
     
     override func viewDidLoad() {
@@ -53,17 +55,36 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
             
             self.counterData = counterValue!
             
-//            print(counterValue)
-            
             let s = counterValue
-            let m = s?.stringByReplacingOccurrencesOfString(" count/min", withString: "")
-
-            self.myView.myBeat = Int(m!)!
+            print(s)
             
-            if Int(m!)! > 100 {
-                PushNotification.sendNotification("Cuidado, batimentos acelerados: " + m!)
-            } else if Int(m!)! < 60 {
-                PushNotification.sendNotification("Cuidado, batimentos muito baixo : " + m!)
+//            if s?.rangeOfString(" count/min") != nil {
+//                
+//                m = (s?.stringByReplacingOccurrencesOfString(" count/min", withString: ""))!
+//                
+//            }
+//            
+//            else {
+//                
+//                m = (s?.stringByReplacingOccurrencesOfString(" count/s", withString: ""))!
+//                
+//            }
+//            
+//            self.myView.myBeat = Int(m)!
+            
+            self.myView.myBeat = Int(s!)!
+            
+            if self.opened == false {
+                
+                self.myView.openTimeIntervalMenu()
+                self.opened = true
+                self.myView.myBeat = Int(s!)!
+            }
+            
+            if Int(s!)! > 100 {
+                PushNotification.sendNotification("Cuidado, batimentos acelerados: " + s!)
+            } else if Int(s!)! < 60 {
+                PushNotification.sendNotification("Cuidado, batimentos muito baixo : " + s!)
             }
 //
 //            let result = Results()
@@ -94,6 +115,8 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         if difference > 20 {
             
             print("closed")
+            self.myView.closeTimeIntervalMenu()
+            self.opened = false
         }
     }
     
@@ -113,6 +136,7 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         
         self.title = "Beat Monitor"
         
+        self.myView.beginCirclesAnimation()
         //self.myView.openTutorial()
         //self.myView.openTimeIntervalMenu()
     }
@@ -172,6 +196,11 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
             
             if(number != nil) {
                 self.myView.myAge = number!
+                
+                let user = self.getUser()
+                user.age = number!
+                
+                
             } else {
                 
             }
@@ -271,25 +300,21 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         
     }
     
-//    private func getUser() -> User{
-//        
-//        var userString = DAO.loadUserData()
-//        var user:User
-//        var userSaved:User
-//        
-//        if userString != "" {
-//            userSaved = JSONService.convertStringToUser(userString)
-//            user.age = userSaved.age
-//            user.weight = userSaved.weight
-//            user.intensity = userSaved.intensity
-//            user.practiseExercise = userSaved.practiseExercise
-//        }
-//        
-//        
-//        var string = JSONService.convertStringToUser(<#T##jsonString: String##String#>)
-//
-//        return nil
-//    }
+    private func getUser() -> User{
+        
+        let userString = DAO.loadUserData()
+        var user:User = User(age: 0, weight: 0, height: 0, practiseExercise: false, intensity: Exercise.Never)
+        var userSaved:User
+        
+        if userString != "" {
+            userSaved = JSONService.convertStringToUser(userString)
+            user.age = userSaved.age
+            user.weight = userSaved.weight
+            user.intensity = userSaved.intensity
+            user.practiseExercise = userSaved.practiseExercise
+        }
+        
+        return user
+    }
     
 }
-

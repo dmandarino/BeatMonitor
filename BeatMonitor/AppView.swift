@@ -34,6 +34,8 @@ class AppView: UIView {
     var heartMidX: CGFloat = 0
     var heartMidX2: CGFloat = 0
     var heartLabelSize2: CGFloat = 0
+    var heartCenter: CGPoint = CGPointMake(0, 0)
+    var circleMaxSize: CGFloat = 0
     
     var age: Int = 0
     var height: Int = 0
@@ -100,9 +102,29 @@ class AppView: UIView {
         }
     }
     
+    var myTimeLeft:Int {
+        get {
+            return timeLeft
+        }
+        set {
+            timeLeft = newValue
+            let totalTime = newValue
+            let seconds = totalTime%60
+            let minutes = (totalTime - seconds)/60
+            
+            nextScanLabel.text = "Next Scan in: \(minutes):\(seconds)"
+        }
+    }
+    
+    var timeLeft: Int = 125
+    
     var inTutorial = false
     var currentInterval = 0
     var intervalButtons: Array<UIButton> = []
+    
+    var heartCircles: Array<UIImageView> = []
+    var heartCirclesTimers: Array<NSTimer> = []
+    var heartCirclesAnimating = false
     
     var resultLabel = UILabel()
     var nextScanLabel = UILabel()
@@ -213,11 +235,11 @@ class AppView: UIView {
         let heartLabelSize:CGFloat = buttonsIntervalBeginX
         let heartLabelFontSize: CGFloat = CGFloat(Int(19 * prop))
         let heartLabelX: CGFloat = 0
-        let heartLabelY: CGFloat = heartY + heartSizeH + (10 * prop)
+        let heartLabelY: CGFloat = heartY + heartSizeH + (20 * prop)
         
         heartLabelSize2 = heartLabelSize
-        
-        //let heartCenter = CGPointMake(heartX2 + heartSizeW/2, heartY + heartSizeH/2)
+        heartCenter = CGPointMake(heartX2 + heartSizeW/2, heartY + heartSizeH/2)
+        circleMaxSize = buttonsIntervalBeginX - 10
         
         //Sections Creations
         
@@ -279,6 +301,15 @@ class AppView: UIView {
         heartLabel.font = UIFont(name: "Helvetica-Bold", size: heartLabelFontSize)
         heartLabel.text = "No Data"
         heartLabel.textColor = UIColor.whiteColor()
+        
+        for var j = 0; j < 10; j++ {
+            
+            let circle = UIImageView(image: UIImage(named: "Circle"))
+            circle.frame = CGRectMake(heartCenter.x - 1, heartCenter.y - 1, 2, 2)
+            
+            heartCircles.append(circle)
+            
+        }
         
         for var i=0; i<intervalValues.count; i++ {
             
@@ -484,7 +515,69 @@ class AppView: UIView {
         self.addSubview(graphView)
         self.addSubview(descriptionContainer)
         
+        for a in heartCircles {
+            
+            self.addSubview(a)
+            
+        }
+        
         intervalAction(intervalButtons[1]) // Padrao 20 minutos
+        
+    }
+    
+    func beginCirclesAnimation() {
+        
+        heartCirclesAnimating = true
+        
+        for var i = 0; i < self.heartCircles.count; i++ {
+            
+            let timer = NSTimer.scheduledTimerWithTimeInterval((0.5 * NSTimeInterval(i)), target: self, selector: Selector("growCircle:"), userInfo: i, repeats: false)
+            
+            heartCirclesTimers.append(timer)
+            
+        }
+        
+    }
+    
+    func stopCirclesAnimation() {
+        
+        heartCirclesAnimating = false
+        
+        for i in heartCirclesTimers {
+            
+            i.invalidate()
+            
+        }
+        
+        heartCirclesTimers = []
+        
+    }
+    
+    func growCircle(timer: NSTimer) {
+        
+        let i = timer.userInfo as! Int
+        
+        let theX = self.heartView.frame.origin.x + self.heartView.frame.size.width/2
+        let theY = self.heartView.frame.origin.y + self.heartView.frame.size.height/2
+        
+        self.heartCircles[i].frame = CGRectMake(theX - 1, theY - 1, 2, 2)
+        self.heartCircles[i].alpha = 1
+        
+        UIView.animateWithDuration(3.0, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
+            
+            self.heartCircles[i].frame = CGRectMake(theX - (self.circleMaxSize/2), theY - (self.circleMaxSize/2), self.circleMaxSize, self.circleMaxSize)
+            self.heartCircles[i].alpha = 0
+            
+            }, completion: {
+                (value: Bool) in
+                
+                if(self.heartCirclesAnimating == true) {
+                    
+                    self.heartCirclesTimers[i].invalidate()
+                    
+                    self.heartCirclesTimers[i] = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: Selector("growCircle:"), userInfo: i, repeats: false)
+                }
+        })
         
     }
     
@@ -593,7 +686,7 @@ class AppView: UIView {
                 }
                 
                 self.heartLabel.frame = CGRectMake(f.origin.x, f.origin.y, self.heartLabelSize2, f.height)
-                self.heartLabel.text = "No Data"
+//                self.heartLabel.text = "No Data"
                 
                 UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
                     
@@ -651,7 +744,7 @@ class AppView: UIView {
                 }
                 
                 self.heartLabel.frame = CGRectMake(f.origin.x, f.origin.y, self.frame.width, f.height)
-                self.heartLabel.text = "No Data"
+                self.heartLabel.text = "Awaiting for watch"
                 
                 UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
                     
