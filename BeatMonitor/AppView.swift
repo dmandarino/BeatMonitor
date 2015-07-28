@@ -258,6 +258,10 @@ class AppView: UIView {
         
         heartView = UIImageView(image: UIImage(named: "Heart"))
         heartView.frame = CGRectMake(heartX2, heartY, heartSizeW, heartSizeH)
+        heartView.userInteractionEnabled = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("pressHeart"))
+        heartView.addGestureRecognizer(tapGesture)
         
         heartLabel = UILabel(frame: CGRectMake(heartLabelX, heartLabelY, heartLabelSize, 40))
         heartLabel.textAlignment = .Center
@@ -471,6 +475,12 @@ class AppView: UIView {
         
     }
     
+    func pressHeart() {
+        
+        print("Coracao")
+        
+    }
+    
     func beginViewFirstTime() {
         
         resultLabel.text = "Welcome to Beat Monitor"
@@ -533,6 +543,64 @@ class AppView: UIView {
                 }
                 
                 self.heartLabel.frame = CGRectMake(f.origin.x, f.origin.y, self.heartLabelSize2, f.height)
+                self.heartLabel.text = "No Data"
+                
+                UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
+                    
+                    self.nextScanLabel.alpha = 1
+                    self.scanEveryLabel.alpha = 1
+                    self.startButton.alpha = 1
+                    
+                    for i in self.intervalButtons {
+                        
+                        i.alpha = 1
+                        
+                    }
+                    
+                    self.heartLabel.alpha = 1
+                    
+                    }, completion: {
+                        (value: Bool) in
+                        
+                })
+        })
+        
+    }
+    
+    func closeTimeIntervalMenu() {
+        
+        let f = heartLabel.frame
+        let f2 = heartView.frame
+        
+        UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
+            
+            self.heartLabel.alpha = 0
+            self.heartView.frame = CGRectMake(self.heartMidX, f2.origin.y, f2.width, f2.height)
+            
+            self.nextScanLabel.alpha = 0
+            self.scanEveryLabel.alpha = 0
+            self.startButton.alpha = 0
+            
+            for i in self.intervalButtons {
+                
+                i.alpha = 0
+                
+            }
+            
+            }, completion: {
+                (value: Bool) in
+                
+                self.nextScanLabel.hidden = true
+                self.scanEveryLabel.hidden = true
+                self.startButton.hidden = true
+                
+                for i in self.intervalButtons {
+                    
+                    i.hidden = true
+                    
+                }
+                
+                self.heartLabel.frame = CGRectMake(f.origin.x, f.origin.y, self.frame.width, f.height)
                 self.heartLabel.text = "No Data"
                 
                 UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
