@@ -102,6 +102,22 @@ class AppView: UIView {
         }
     }
     
+    var myTimeLeft:Int {
+        get {
+            return timeLeft
+        }
+        set {
+            timeLeft = newValue
+            let totalTime = newValue
+            let seconds = totalTime%60
+            let minutes = (totalTime - seconds)/60
+            
+            nextScanLabel.text = "Next Scan in: \(minutes):\(seconds)"
+        }
+    }
+    
+    var timeLeft: Int = 125
+    
     var inTutorial = false
     var currentInterval = 0
     var intervalButtons: Array<UIButton> = []
@@ -728,7 +744,7 @@ class AppView: UIView {
                 }
                 
                 self.heartLabel.frame = CGRectMake(f.origin.x, f.origin.y, self.frame.width, f.height)
-                self.heartLabel.text = "No Data"
+                self.heartLabel.text = "Awaiting for watch"
                 
                 UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
                     
