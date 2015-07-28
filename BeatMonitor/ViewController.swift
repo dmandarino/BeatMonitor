@@ -59,8 +59,6 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
             
             print(s)
             
-            var m = ""
-            
 //            if s?.rangeOfString(" count/min") != nil {
 //                
 //                m = (s?.stringByReplacingOccurrencesOfString(" count/min", withString: ""))!
