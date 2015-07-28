@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var navigationController:UINavigationController!
     
     var mainViewController =  ViewController()
+    
+    let healthStore: HKHealthStore = HKHealthStore()
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -71,6 +74,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func applicationShouldRequestHealthAuthorization(application: UIApplication) {
+        
+        self.healthStore.handleAuthorizationForExtensionWithCompletion { success, error in
+            
+            
+        }
     }
 
 

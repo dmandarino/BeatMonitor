@@ -91,6 +91,17 @@ class AppView: UIView {
         }
     }
     
+    var myInterval:Int {
+        get {
+            return currentInterval * 60
+        }
+        set {
+            currentInterval = newValue
+        }
+    }
+    
+    var inTutorial = false
+    var currentInterval = 0
     var intervalButtons: Array<UIButton> = []
     
     var resultLabel = UILabel()
@@ -258,6 +269,10 @@ class AppView: UIView {
         
         heartView = UIImageView(image: UIImage(named: "Heart"))
         heartView.frame = CGRectMake(heartX2, heartY, heartSizeW, heartSizeH)
+        heartView.userInteractionEnabled = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("pressHeart"))
+        heartView.addGestureRecognizer(tapGesture)
         
         heartLabel = UILabel(frame: CGRectMake(heartLabelX, heartLabelY, heartLabelSize, 40))
         heartLabel.textAlignment = .Center
@@ -282,7 +297,7 @@ class AppView: UIView {
         }
         
         startButton = UIButton(frame: CGRectMake(buttonsIntervalBeginX, startButtonY , buttonIntervalSize*3, buttonsIntervalH))
-        startButton.setTitle("Start", forState: .Normal)
+        startButton.setTitle("Stop", forState: .Normal)
         startButton.layer.borderWidth = 0
         startButton.layer.cornerRadius = 1
         startButton.clipsToBounds = true
@@ -469,9 +484,50 @@ class AppView: UIView {
         self.addSubview(graphView)
         self.addSubview(descriptionContainer)
         
+        intervalAction(intervalButtons[1]) // Padrao 20 minutos
+        
     }
     
-    func beginViewFirstTime() {
+    func pressHeart() {
+        
+        if(inTutorial == true) {
+            closeTutorial()
+        }
+    }
+    
+    func closeTutorial() {
+        
+        inTutorial = false
+        
+        resultLabel.text = "Results"
+        
+        graphView.hidden = false
+        descriptionContainer.hidden = true
+        
+        nextScanLabel.hidden = true
+        scanEveryLabel.hidden = true
+        startButton.hidden = true
+        
+        for i in intervalButtons {
+            
+            i.hidden = true
+            
+        }
+        
+        let f = heartLabel.frame
+        
+        heartLabel.frame = CGRectMake(f.origin.x, f.origin.y, self.frame.width, f.height)
+        heartLabel.text = "Awating for watch"
+        
+        let f2 = heartView.frame
+        
+        heartView.frame = CGRectMake(heartMidX, f2.origin.y, f2.width, f2.height)
+        
+    }
+    
+    func openTutorial() {
+        
+        inTutorial = true
         
         resultLabel.text = "Welcome to Beat Monitor"
         
@@ -500,6 +556,10 @@ class AppView: UIView {
     }
     
     func openTimeIntervalMenu() {
+        
+        if(inTutorial == true) {
+            return //Only open menu if not in tutorial
+        }
         
         let f = heartLabel.frame
         let f2 = heartView.frame
@@ -557,9 +617,67 @@ class AppView: UIView {
         
     }
     
+    func closeTimeIntervalMenu() {
+        
+        let f = heartLabel.frame
+        let f2 = heartView.frame
+        
+        UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
+            
+            self.heartLabel.alpha = 0
+            self.heartView.frame = CGRectMake(self.heartMidX, f2.origin.y, f2.width, f2.height)
+            
+            self.nextScanLabel.alpha = 0
+            self.scanEveryLabel.alpha = 0
+            self.startButton.alpha = 0
+            
+            for i in self.intervalButtons {
+                
+                i.alpha = 0
+                
+            }
+            
+            }, completion: {
+                (value: Bool) in
+                
+                self.nextScanLabel.hidden = true
+                self.scanEveryLabel.hidden = true
+                self.startButton.hidden = true
+                
+                for i in self.intervalButtons {
+                    
+                    i.hidden = true
+                    
+                }
+                
+                self.heartLabel.frame = CGRectMake(f.origin.x, f.origin.y, self.frame.width, f.height)
+                self.heartLabel.text = "No Data"
+                
+                UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
+                    
+                    self.nextScanLabel.alpha = 1
+                    self.scanEveryLabel.alpha = 1
+                    self.startButton.alpha = 1
+                    
+                    for i in self.intervalButtons {
+                        
+                        i.alpha = 1
+                        
+                    }
+                    
+                    self.heartLabel.alpha = 1
+                    
+                    }, completion: {
+                        (value: Bool) in
+                        
+                })
+        })
+        
+    }
+    
     func pressHelp() {
         
-        print("Help")
+        openTutorial()
         
     }
     
@@ -638,6 +756,36 @@ class AppView: UIView {
             button.setTitle("Start", forState: .Normal)
             delegate?.didPressStartButton(false)
         }
+        
+    }
+    
+    func refreshGraphData(data: Array<Int>) {
+        
+        graphView.heartBeatValues = data
+        
+        graphView.removeFromSuperview()
+        
+        self.addSubview(graphView)
+        
+    }
+    
+    func resetVisualData() {
+        
+        button1.setTitle("Tap to set", forState: .Normal)
+        button2.setTitle("Tap to set", forState: .Normal)
+        button3.setTitle("Tap to set", forState: .Normal)
+        button4.setTitle("Tap to set", forState: .Normal)
+        
+        buttonA.backgroundColor = redDarkColor
+        buttonA.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        buttonB.backgroundColor = redDarkColor
+        buttonB.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        buttonC.backgroundColor = redDarkColor
+        buttonC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
+        graphView.removeFromSuperview()
+        
+        self.addSubview(graphView)
         
     }
     

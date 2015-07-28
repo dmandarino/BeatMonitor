@@ -7,17 +7,88 @@
 //
 
 import UIKit
+import WatchConnectivity
 
-class ViewController: UIViewController, BeatMonitorScreenProtocol {
+class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDelegate {
     
     var minutes = 0
     var seconds = 0
     var timer = NSTimer()
     
+    var session: WCSession!
+    
+    var intervalo: Double = 0
+    
+    var counterData = String()
+    
+    var lastReceived = NSDate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "timerDidFire:", userInfo:nil, repeats: true)
+        
+        
+        beginSession()
+        
+    }
+    
+    func beginSession() {
+        
+        if (WCSession.isSupported()) {
+            session = WCSession.defaultSession()
+            session.delegate = self;
+            session.activateSession()
+
+        }
+        
+    }
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        let counterValue = message["counterValue"] as? String
+        
+        //Use this to update the UI instantaneously (otherwise, takes a little while)
+        dispatch_async(dispatch_get_main_queue()) {
+            
+            self.counterData = counterValue!
+            
+//            print(counterValue)
+            
+            let s = counterValue
+            let m = s?.stringByReplacingOccurrencesOfString(" count/min", withString: "")
+
+            self.myView.myBeat = Int(m!)!
+//
+//            let result = Results()
+//            var array = result.results
+//            
+//            var string: String = DAO.loadResultsData() as String
+//            if string != "" {
+//               array = JSONService.convertStringToResults(string)
+//            }
+//            array.append(Int(m!)!)
+//            print(array)
+//            result.reorganizeResults(array)
+//            string = JSONService.stringfyResults([0,0,0,0,0,0,0,0,Int(m!)!])
+//            print(string)
+//            DAO.saveResultsData(string)
+            
+            self.lastReceived = NSDate()
+            
+        }
+    }
+    
+    func timerDidFire(timer:NSTimer!) {
+        
+        let difference = NSDate().timeIntervalSinceDate(lastReceived)
+        
+        print(difference)
+        
+        if difference > 20 {
+            
+            print("closed")
+        }
     }
     
     var myView:AppView {
@@ -32,10 +103,11 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol {
         self.view = AppView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), navBarH: self.navigationController!.navigationBar.frame.height)
         
         self.myView.delegate = self
+        //self.myView.intervalAction(self.myView.intervalButtons[1])
         
         self.title = "Beat Monitor"
         
-        //self.myView.beginViewFirstTime()
+        //self.myView.openTutorial()
         //self.myView.openTimeIntervalMenu()
     }
     
@@ -54,9 +126,27 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol {
     
     func didChangeIntervalValue(value: Int) {
         
+        intervalo = Double(value)
+        
+        let applicationData = ["intervalo":intervalo]
+        
+        session.sendMessage(applicationData, replyHandler: {(_: [String : AnyObject]) -> Void in
+            // handle reply from iPhone app here
+            }, errorHandler: {(error ) -> Void in
+                // catch any errors here
+        })
+        
     }
     
     func didPressStartButton(state: Bool) {
+        
+        let applicationData = ["status":state]
+        
+        session.sendMessage(applicationData, replyHandler: {(_: [String : AnyObject]) -> Void in
+            // handle reply from iPhone app here
+            }, errorHandler: {(error ) -> Void in
+                // catch any errors here
+        })
         
     }
     

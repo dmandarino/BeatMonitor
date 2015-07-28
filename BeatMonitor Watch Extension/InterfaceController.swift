@@ -1,21 +1,27 @@
 //
 //  InterfaceController.swift
-//  BeatMonitor Watch Extension
+//  teste_watch WatchKit Extension
 //
-//  Created by Victor Souza on 7/22/15.
-//  Copyright © 2015 Douglas Mandarino. All rights reserved.
+//  Created by Victor Souza on 7/27/15.
+//  Copyright © 2015 Victor Souza. All rights reserved.
 //
 
 import WatchKit
 import Foundation
 import HealthKit
+import WatchConnectivity
 
 
-class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
+class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSessionDelegate  {
+    
+    let healthStore: HKHealthStore = HKHealthStore()
     
     @IBOutlet var label: WKInterfaceLabel!
     
-    let healthStore: HKHealthStore = HKHealthStore()
+    @IBOutlet var scan: WKInterfaceLabel!
+    
+    var session : WCSession!
+    var session2 : WCSession!
     
     var workoutStartDate: NSDate?
     var workoutEndDate: NSDate?
@@ -23,8 +29,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     var queries: [HKQuery] = []
     
     var heartRateSampless: [HKQuantitySample] = []
-    
-    let countPerMinuteUnit = HKUnit(fromString:"count/min")
+    let countPerMinuteUnit = HKUnit(fromString: "count/min")
     
     let heartRateType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
     
@@ -33,40 +38,35 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     var currentHeartRateQuantity: HKQuantity!
     
     var activityType: HKWorkoutActivityType?
-    
     var locationType: HKWorkoutSessionLocationType?
     
     var workoutSession: HKWorkoutSession?
     
-
+    var beginDate = NSDate()
+    
+    var intervalo = Double()
+    
+    var status = Bool()
+    
+    override func willActivate() {
+        super.willActivate()
+        
+        scan.setText("Connecting...")
+        
+        beginSession()
+    }
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        // Configure interface objects here.
-        
-        label.setText("hasn't been updated yet")
+        label.setText("----")
         
         activityType = HKWorkoutActivityType.MindAndBody
         
-        
         locationType = HKWorkoutSessionLocationType.Indoor
-        workoutSession = HKWorkoutSession(activityType: activityType!, locationType: locationType!)
         
-        workoutSession!.delegate = self
         
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //Trecho abaixo comentado por erro na build!
-        
-//        healthStore.startWorkoutSession(workoutSession!) { (update, error) -> Void in
-//            
-//        }
-        
-        let typesToShare = Set([HKObjectType.workoutType()])
+        let typesToShare = Set([HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!])
         let typesToRead = Set([
             HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!,
             
@@ -80,10 +80,41 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
             
         }
         
+        status = true
+        
+        setupWorkout()
+    }
+    
+    func stopWorkout() {
+        
+        healthStore.endWorkoutSession(workoutSession!)
+        
+    }
+    
+    func setupWorkout() {
+        
+//        let variation = NSDate().timeIntervalSinceDate(beginDate)
+        
+        workoutSession = HKWorkoutSession(activityType: activityType!, locationType: locationType!)
+        
+        workoutSession!.delegate = self
+        
+        healthStore.startWorkoutSession(workoutSession!)
         
         createStreamingHeartRateQuery(NSDate())
         
     }
+    
+    func delay(delay:Double, closure:()->()) {
+        
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
+    
     
     func getHeartRateSamples(samples: [HKSample]?) {
         guard let heartRateSamples = samples as? [HKQuantitySample] else { return }
@@ -93,13 +124,48 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         for sample in heartRateSamples {
             print(sample.quantity)
             print(sample.startDate)
+            print(status)
             
-            let heartRate = sample.quantity
-            let heartRateDouble = heartRate.doubleValueForUnit(countPerMinuteUnit)
+            let string = String(sample.quantity)
             
-            self.label.setText("\(heartRateDouble)")
+//            let heartRate = sample.quantity
+//            let heartRateDouble = heartRate.doubleValueForUnit(countPerMinuteUnit)
+            
+            let counter = string.stringByReplacingOccurrencesOfString(" count/min", withString: "")
+            
+            if status == true {
+            
+                sendToPhone(string)
+                
+                self.label.setText("\(counter)")
+                
+                self.scan.setText("Scanning...")
+            }
             
         }
+        
+        healthStore.endWorkoutSession(workoutSession!)
+        
+        delay(intervalo) {
+            
+            self.workoutSession = HKWorkoutSession(activityType: self.activityType!, locationType: self.locationType!)
+            
+            self.workoutSession!.delegate = self
+            
+            self.healthStore.startWorkoutSession(self.workoutSession!)
+        }
+    }
+    
+    func sendToPhone(counter: String) {
+        
+        let applicationData = ["counterValue":counter]
+        
+        session.sendMessage(applicationData, replyHandler: {(_: [String : AnyObject]) -> Void in
+            // handle reply from iPhone app here
+            }, errorHandler: {(error ) -> Void in
+                // catch any errors here
+        })
+        
     }
     
     
@@ -121,47 +187,73 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         
         healthStore.executeQuery(heartRateQuery)
         
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!
-        //Trecho abaixo comentado por warning na build!
-        
-//        let sampleHandler = { (samples: [HKQuantitySample]) -> Void in
-//            
-//        }
-        
+        _ = { (samples: [HKQuantitySample]) -> Void in
+            
+        }
         
         return heartRateQuery
         
     }
     
     func workoutSession(workoutSession: HKWorkoutSession, didChangeToState toState: HKWorkoutSessionState, fromState: HKWorkoutSessionState, date: NSDate) {
-        
     }
     
     func workoutSession(workoutSession: HKWorkoutSession, didFailWithError error: NSError) {
-        
-    }
-
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-
-        
-    }
-
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
     }
     
-    @IBAction func scan() {
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         
+        if message["intervalo"] != nil {
+            
+            intervalo = (message["intervalo"] as? Double)!
+            
+        }
         
+        else if message["status"] != nil {
+            
+            status = (message["status"] as? Bool)!
+            
+            if status == true {
+             
+                self.workoutSession = HKWorkoutSession(activityType: self.activityType!, locationType: self.locationType!)
+                
+                self.workoutSession!.delegate = self
+                
+                self.healthStore.startWorkoutSession(self.workoutSession!)
+                
+            }
+            
+            else if status == false {
+                
+                stopWorkout()
+                
+            }
+        }
         
     }
+    
+    @IBAction func restart() {
+        
+        if status == true {
+            
+            self.workoutSession = HKWorkoutSession(activityType: self.activityType!, locationType: self.locationType!)
+            
+            self.workoutSession!.delegate = self
+            
+            self.healthStore.startWorkoutSession(self.workoutSession!)
+            
+        }
+        
+    }
+    
+    func beginSession() {
+        
+        if (WCSession.isSupported()) {
+            session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
 
+        }
+    }
+    
 }
