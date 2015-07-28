@@ -667,7 +667,7 @@ class AppView: UIView {
                 }
                 
                 self.heartLabel.frame = CGRectMake(f.origin.x, f.origin.y, self.heartLabelSize2, f.height)
-                self.heartLabel.text = "No Data"
+//                self.heartLabel.text = "No Data"
                 
                 UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
                     
