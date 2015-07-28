@@ -27,7 +27,7 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        NSTimer.scheduledTimerWithTimeInterval(1200, target: self, selector: "timerDidFire:", userInfo:nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "timerDidFire:", userInfo:nil, repeats: true)
         
         
         beginSession()
@@ -40,6 +40,7 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
             session = WCSession.defaultSession()
             session.delegate = self;
             session.activateSession()
+
         }
         
     }
@@ -50,25 +51,25 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         //Use this to update the UI instantaneously (otherwise, takes a little while)
         dispatch_async(dispatch_get_main_queue()) {
             
-//            self.counterData = counterValue!
+            self.counterData = counterValue!
             
-            print(counterValue)
-            
+//            print(counterValue)
+//            
             let s = counterValue
             let m = s?.stringByReplacingOccurrencesOfString(" count/min", withString: "")
-            
+//
             self.myView.myBeat = Int(m!)!
-            
-            let result = Results()
-            var array = result.results
-            
-            var string: String = DAO.loadResultsData() as String
-            if string != "" {
-               array = JSONService.convertStringToResults(string)
-            }
-            array.append(Int(m!)!)
-            print(array)
-            result.reorganizeResults(array)
+//
+//            let result = Results()
+//            var array = result.results
+//            
+//            var string: String = DAO.loadResultsData() as String
+//            if string != "" {
+//               array = JSONService.convertStringToResults(string)
+//            }
+//            array.append(Int(m!)!)
+//            print(array)
+//            result.reorganizeResults(array)
         
             
 //            string = JSONService.stringfyResults([0,0,0,0,0,0,0,0,Int(m!)!])
@@ -88,7 +89,7 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         
         if difference > 20 {
             
-//                notificacao app fechou
+            print("closed")
         }
     }
     
@@ -139,6 +140,14 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
     }
     
     func didPressStartButton(state: Bool) {
+        
+        let applicationData = ["status":state]
+        
+        session.sendMessage(applicationData, replyHandler: {(_: [String : AnyObject]) -> Void in
+            // handle reply from iPhone app here
+            }, errorHandler: {(error ) -> Void in
+                // catch any errors here
+        })
         
     }
     

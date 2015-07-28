@@ -34,9 +34,9 @@
                                         <label alignment="left" text="Connecting..." textAlignment="left" id="mbp-dj-Mph">
                                             <fontDescription key="font" type="system" pointSize="11"/>
                                         </label>
-                                        <button width="1" height="30" alignment="left" verticalAlignment="bottom" title="Stop" id="SA8-c8-ah7">
+                                        <button width="1" height="30" alignment="left" verticalAlignment="bottom" title="Restart" id="SA8-c8-ah7">
                                             <connections>
-                                                <action selector="scan" destination="AgC-eL-Hgc" id="N8J-nS-SG6"/>
+                                                <action selector="restart" destination="AgC-eL-Hgc" id="ddz-Nu-nFA"/>
                                             </connections>
                                         </button>
                                         <group width="1" height="5" alignment="left" verticalAlignment="bottom" id="oAN-x7-W4I">

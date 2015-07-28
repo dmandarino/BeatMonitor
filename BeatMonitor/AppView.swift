@@ -286,7 +286,7 @@ class AppView: UIView {
         }
         
         startButton = UIButton(frame: CGRectMake(buttonsIntervalBeginX, startButtonY , buttonIntervalSize*3, buttonsIntervalH))
-        startButton.setTitle("Start", forState: .Normal)
+        startButton.setTitle("Stop", forState: .Normal)
         startButton.layer.borderWidth = 0
         startButton.layer.cornerRadius = 1
         startButton.clipsToBounds = true
