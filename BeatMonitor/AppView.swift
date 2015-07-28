@@ -541,16 +541,19 @@ class AppView: UIView {
         
         let i = timer.userInfo as! Int
         
+        let theX = self.heartView.frame.origin.x + self.heartView.frame.size.width/2
+        let theY = self.heartView.frame.origin.y + self.heartView.frame.size.height/2
+        
+        self.heartCircles[i].frame = CGRectMake(theX - 1, theY - 1, 2, 2)
+        self.heartCircles[i].alpha = 1
+        
         UIView.animateWithDuration(3.0, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () in
             
-            self.heartCircles[i].frame = CGRectMake(self.heartCenter.x - (self.circleMaxSize/2), self.heartCenter.y - (self.circleMaxSize/2), self.circleMaxSize, self.circleMaxSize)
+            self.heartCircles[i].frame = CGRectMake(theX - (self.circleMaxSize/2), theY - (self.circleMaxSize/2), self.circleMaxSize, self.circleMaxSize)
             self.heartCircles[i].alpha = 0
             
             }, completion: {
                 (value: Bool) in
-                
-                self.heartCircles[i].frame = CGRectMake(self.heartCenter.x - 1, self.heartCenter.y - 1, 2, 2)
-                self.heartCircles[i].alpha = 1
                 
                 if(self.heartCirclesAnimating == true) {
                     
