@@ -87,7 +87,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
     
     func stopWorkout() {
         
-//        healthStore.endWorkoutSession(workoutSession!)
+        healthStore.endWorkoutSession(workoutSession!)
         
     }
     
@@ -99,7 +99,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
         
         workoutSession!.delegate = self
         
-//        healthStore.startWorkoutSession(workoutSession!)
+        healthStore.startWorkoutSession(workoutSession!)
         
         createStreamingHeartRateQuery(NSDate())
         
@@ -158,7 +158,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
             
         }
         
-//        healthStore.endWorkoutSession(workoutSession!)
+        healthStore.endWorkoutSession(workoutSession!)
         
         delay(intervalo) {
             
@@ -166,7 +166,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
             
             self.workoutSession!.delegate = self
             
-//            self.healthStore.startWorkoutSession(self.workoutSession!)
+            self.healthStore.startWorkoutSession(self.workoutSession!)
         }
     }
     
@@ -233,7 +233,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
                 
                 self.workoutSession!.delegate = self
                 
-//                self.healthStore.startWorkoutSession(self.workoutSession!)
+                self.healthStore.startWorkoutSession(self.workoutSession!)
                 
             }
             
@@ -254,7 +254,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
             
             self.workoutSession!.delegate = self
             
-//            self.healthStore.startWorkoutSession(self.workoutSession!)
+            self.healthStore.startWorkoutSession(self.workoutSession!)
             
         }
         
@@ -270,4 +270,58 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
         }
     }
     
+    @IBAction func simulateHigh() {
+        
+        self.healthStore.endWorkoutSession(self.workoutSession!)
+        
+        if status == true {
+            
+            let lower : UInt32 = 101
+            let upper : UInt32 = 120
+            let randomNumber = arc4random_uniform(upper - lower) + lower
+            self.sendToPhone(String(randomNumber))
+            self.label.setText("\(randomNumber)")
+            status = false
+            
+            delay(5.0) {
+                
+                self.status = true
+            
+                self.workoutSession = HKWorkoutSession(activityType: self.activityType!, locationType: self.locationType!)
+                
+                self.workoutSession!.delegate = self
+                
+                self.healthStore.startWorkoutSession(self.workoutSession!)
+            }
+            
+        }
+    }
+    
+    @IBAction func simulateLow() {
+        
+        self.healthStore.endWorkoutSession(self.workoutSession!)
+        
+        if status == true {
+            
+            let lower : UInt32 = 40
+            let upper : UInt32 = 48
+            let randomNumber = arc4random_uniform(upper - lower) + lower
+            self.sendToPhone(String(randomNumber))
+            self.label.setText("\(randomNumber)")
+            status = false
+            
+            delay(5.0) {
+                
+                self.status = true
+                
+                self.workoutSession = HKWorkoutSession(activityType: self.activityType!, locationType: self.locationType!)
+                
+                self.workoutSession!.delegate = self
+                
+                self.healthStore.startWorkoutSession(self.workoutSession!)
+            }
+            
+        }
+        
+    }
 }

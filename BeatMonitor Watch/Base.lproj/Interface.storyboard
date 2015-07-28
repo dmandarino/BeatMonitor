@@ -47,6 +47,20 @@
                             </items>
                         </group>
                     </items>
+                    <menu key="menu" id="9f1-26-dDw">
+                        <items>
+                            <menuItem title="Simulate High" icon="more" id="Q8E-lC-Ah3" userLabel="Simulate High">
+                                <connections>
+                                    <action selector="simulateHigh" destination="AgC-eL-Hgc" id="6D1-cL-VXi"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Simulate Low" icon="maybe" id="bz9-9A-xoe">
+                                <connections>
+                                    <action selector="simulateLow" destination="AgC-eL-Hgc" id="M64-Ez-bXy"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="label" destination="wjx-6q-eLI" id="Fpo-TT-l5M"/>
                         <outlet property="scan" destination="mbp-dj-Mph" id="JvN-ck-1C2"/>

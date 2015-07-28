@@ -82,9 +82,9 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
             }
             
             if Int(s!)! > 100 {
-                PushNotification.sendNotification("Cuidado, batimentos acelerados: " + s!)
-            } else if Int(s!)! < 60 {
-                PushNotification.sendNotification("Cuidado, batimentos muito baixo : " + s!)
+                PushNotification.sendNotification("Warning, heart beat too high: " + s!)
+            } else if Int(s!)! < 49 {
+                PushNotification.sendNotification("Warning, heart beat too low : " + s!)
             }
 //
 //            let result = Results()
@@ -117,6 +117,7 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
             print("closed")
             self.myView.closeTimeIntervalMenu()
             self.opened = false
+            PushNotification.sendNotification("App stopped, please restart it on watch!")
         }
     }
     
