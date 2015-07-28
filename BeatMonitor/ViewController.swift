@@ -54,10 +54,10 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
             self.counterData = counterValue!
             
 //            print(counterValue)
-//            
+            
             let s = counterValue
             let m = s?.stringByReplacingOccurrencesOfString(" count/min", withString: "")
-//
+
             self.myView.myBeat = Int(m!)!
 //
 //            let result = Results()
@@ -70,8 +70,6 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
 //            array.append(Int(m!)!)
 //            print(array)
 //            result.reorganizeResults(array)
-        
-            
 //            string = JSONService.stringfyResults([0,0,0,0,0,0,0,0,Int(m!)!])
 //            print(string)
 //            DAO.saveResultsData(string)
@@ -105,6 +103,7 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         self.view = AppView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), navBarH: self.navigationController!.navigationBar.frame.height)
         
         self.myView.delegate = self
+        //self.myView.intervalAction(self.myView.intervalButtons[1])
         
         self.title = "Beat Monitor"
         

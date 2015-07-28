@@ -473,6 +473,8 @@ class AppView: UIView {
         self.addSubview(graphView)
         self.addSubview(descriptionContainer)
         
+        intervalAction(intervalButtons[1]) // Padrao 20 minutos
+        
     }
     
     func pressHeart() {
