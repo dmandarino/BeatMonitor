@@ -107,6 +107,7 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         
         self.title = "Beat Monitor"
         
+        self.myView.beginCirclesAnimation()
         //self.myView.openTutorial()
         //self.myView.openTimeIntervalMenu()
     }
