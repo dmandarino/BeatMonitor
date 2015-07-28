@@ -59,10 +59,16 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
             let m = s?.stringByReplacingOccurrencesOfString(" count/min", withString: "")
 
             self.myView.myBeat = Int(m!)!
+            
+            if Int(m!)! > 100 {
+                PushNotification.sendNotification("Cuidado, batimentos acelerados: " + m!)
+            } else if Int(m!)! < 60 {
+                PushNotification.sendNotification("Cuidado, batimentos muito baixo : " + m!)
+            }
 //
 //            let result = Results()
 //            var array = result.results
-//            
+//
 //            var string: String = DAO.loadResultsData() as String
 //            if string != "" {
 //               array = JSONService.convertStringToResults(string)
@@ -264,6 +270,26 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
         
         
     }
+    
+//    private func getUser() -> User{
+//        
+//        var userString = DAO.loadUserData()
+//        var user:User
+//        var userSaved:User
+//        
+//        if userString != "" {
+//            userSaved = JSONService.convertStringToUser(userString)
+//            user.age = userSaved.age
+//            user.weight = userSaved.weight
+//            user.intensity = userSaved.intensity
+//            user.practiseExercise = userSaved.practiseExercise
+//        }
+//        
+//        
+//        var string = JSONService.convertStringToUser(<#T##jsonString: String##String#>)
+//
+//        return nil
+//    }
     
 }
 

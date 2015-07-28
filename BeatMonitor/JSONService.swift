@@ -43,9 +43,16 @@ class JSONService {
     
     class func stringfyResults(results:[Int]) -> String {
         
-        let resultArray:AnyObject = [ "results" : results ]
+        var jsonObject: [AnyObject] = []
         
-        let jsonString = JSONStringify(resultArray)
+        for var i = 0 ; i < 10 ; i++ {
+            
+            let string = "result" + i.description
+            let obj: AnyObject = [ string  : results[i] ]
+
+            jsonObject.append(obj)
+        }
+        let jsonString = JSONStringify(jsonObject)
         return jsonString
     }
     
@@ -54,9 +61,13 @@ class JSONService {
         let array = JSONParseArray(jsonString)
         for dict:AnyObject in array {
             
-            let results = dict["results"] as! [Int]
+            var array:[Int] = []
             
-            return results
+            for var i = 0 ; i < 10 ; i++ {
+                let result = dict["result"+i.description] as! Int
+                array.append(result)
+            }
+            return array
         }
         
         return []
