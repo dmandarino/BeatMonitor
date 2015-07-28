@@ -115,7 +115,6 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
             dispatch_get_main_queue(), closure)
     }
     
-    
     func getHeartRateSamples(samples: [HKSample]?) {
         guard let heartRateSamples = samples as? [HKQuantitySample] else { return }
         
