@@ -304,7 +304,7 @@ class ViewController: UIViewController, BeatMonitorScreenProtocol, WCSessionDele
     private func getUser() -> User{
         
         let userString = DAO.loadUserData()
-        var user:User = User(age: 0, weight: 0, height: 0, practiseExercise: false, intensity: Exercise.Never)
+        let user:User = User(age: 0, weight: 0, height: 0, practiseExercise: false, intensity: Exercise.Never)
         var userSaved:User
         
         if userString != "" {
