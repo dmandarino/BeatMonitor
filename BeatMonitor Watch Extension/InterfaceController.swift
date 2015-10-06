@@ -184,12 +184,14 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
     
     func createStreamingHeartRateQuery(workoutStartDate: NSDate) -> HKQuery {
         
-        
         let predicate = HKQuery.predicateForSamplesWithStartDate(workoutStartDate, endDate: nil, options: .None)
         let type = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-        let heartRateQuery = HKAnchoredObjectQuery(type: type!, predicate: predicate, anchor: 0, limit: 0) { (query, samples, deletedObjects, anchor, error) -> Void in
+//        let heartRateQuery = HKAnchoredObjectQuery(type: type, predicate: predicate, anchor: zero, limit: zero, completionHandler: nil)
+        
+        let heartRateQuery = HKAnchoredObjectQuery(type: type!, predicate: predicate, anchor: 0, limit: 0) { (query, samples, deletedObject, error) -> Void in
             
         }
+        
         
         heartRateQuery.updateHandler = {
             (query, samples, deletedObjects, anchor, error) -> Void in
